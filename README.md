@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## CV-Tracker
 
-## Getting Started
+CV-Tracker is a web application designed to help users track their job applications. It allows users to add, update, and delete job applications, as well as filter and sort them based on various criteria. The application is built using Next.js, TypeScript, and PostgreSQL.
 
-First, run the development server:
+## Features
+
+- Add new job applications with details such as company name, position, date applied, notes, and job URL.
+- Update the status of job applications (pending or archived).
+- Delete job applications.
+- Filter job applications by date range (today, last 7 days, last 30 days, this month, last month).
+- Sort job applications by date applied, company name, or position.
+- View pending and archived job applications separately.
+
+## Dependencies
+
+- Next.js
+- TypeScript
+- PostgreSQL
+- Drizzle ORM
+- Date-fns
+- Lucide-react
+- Sonner
+- Tailwind CSS
+- Zod
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/KacperRebosz/CV-Tracker.git
+cd CV-Tracker
+```
+
+2. Install the dependencies:
+
+```bash
+npm install
+```
+
+3. Set up the environment variables:
+
+Create a `.env.local` file in the root directory and add the following variables:
+
+```env
+DATABASE_URL=your_database_url
+```
+
+4. Run the database migrations:
+
+```bash
+npm run migrate
+```
+
+## Usage
+
+1. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Database Schema
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The database schema consists of a single table `applications` and an enum `application_status`.
 
-## Learn More
+### Table: applications
 
-To learn more about Next.js, take a look at the following resources:
+| Column       | Type                | Description                        |
+|--------------|---------------------|------------------------------------|
+| id           | serial              | Primary key                        |
+| company_name | text                | Name of the company                |
+| position     | text                | Position applied for               |
+| date_applied | timestamp           | Date the application was submitted |
+| notes        | text                | Additional notes                   |
+| status       | application_status  | Status of the application          |
+| url          | text                | URL of the job posting             |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To deploy the application, you can use platforms like Vercel or any other hosting provider that supports Next.js applications. Follow the platform-specific instructions for deployment.
